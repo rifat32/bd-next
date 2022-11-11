@@ -254,6 +254,8 @@ class Client {
       HttpClient.get<Order>(`${API_ENDPOINTS.ORDERS}/${tracking_number}`),
     create: (input: CreateOrderInput) =>
       HttpClient.post<Order>(API_ENDPOINTS.ORDERS, input),
+    createGuest: (input: CreateOrderInput) =>
+      HttpClient.post<Order>(API_ENDPOINTS.ORDERS_GUEST, input),
     statuses: (params: Pick<QueryOptions, 'limit'>) =>
       HttpClient.get<OrderStatusPaginator>(API_ENDPOINTS.ORDERS_STATUS, params),
     refunds: (params: Pick<QueryOptions, 'limit'>) =>

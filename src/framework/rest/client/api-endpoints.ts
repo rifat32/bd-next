@@ -16,6 +16,7 @@ export const API_ENDPOINTS = {
   COUPONS: '/coupons',
   COUPONS_VERIFY: '/coupons/verify',
   ORDERS: '/orders',
+  ORDERS_GUEST: '/orders/guest',
   ORDERS_STATUS: '/order-status',
   ORDERS_REFUNDS: '/refunds',
   ORDERS_CHECKOUT_VERIFY: '/orders/checkout/verify',

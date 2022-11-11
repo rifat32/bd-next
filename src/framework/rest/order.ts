@@ -282,6 +282,39 @@ export function useCreateOrder() {
     isLoading,
   };
 }
+export function useCreateOrderGuest() {
+  console.log("fffffff");
+
+  const router = useRouter();
+  const { locale } = router;
+
+  const { mutate: createOrder, isLoading } = useMutation(client.orders.createGuest, {
+    onSuccess: (data) => {
+      if (data?.tracking_number) {
+        router.push(Routes.order(data?.tracking_number));
+      }
+    },
+    onError: (error) => {
+      const {
+        response: { data },
+      }: any = error ?? {};
+      toast.error(data?.message);
+    },
+  });
+
+  function formatOrderInput(input: CreateOrderInput) {
+    const formattedInputs = {
+      ...input,
+      language: locale
+    };
+    createOrder(formattedInputs);
+  }
+
+  return {
+    createOrder: formatOrderInput,
+    isLoading,
+  };
+}
 
 export function useGenerateDownloadableUrl() {
   const { mutate: getDownloadableUrl } = useMutation(

@@ -23,7 +23,7 @@ const ContactGrid = dynamic(
   () => import('@/components/checkout/contact/contact-grid')
 );
 const RightSideView = dynamic(
-  () => import('@/components/checkout/right-side-view'),
+  () => import('@/components/checkout/right-side-view-guest'),
   { ssr: false }
 );
 
