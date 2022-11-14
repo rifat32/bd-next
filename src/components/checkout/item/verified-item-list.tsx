@@ -128,6 +128,7 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
           <span className="text-base font-semibold text-heading">{total}</span>
         </div>
       </div>
+      
       {verifiedResponse && (
         <Wallet
           totalPrice={totalPrice}
@@ -135,6 +136,7 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
           walletCurrency={verifiedResponse.wallet_currency}
         />
       )}
+      
       {use_wallet && !Boolean(payableAmount) ? null : (
         <PaymentGrid className="mt-10 border border-gray-200 bg-light p-5" />
       )}

@@ -15,7 +15,6 @@ const checkoutContactSchema = yup.object().shape({
 
 interface PhoneNumberFormProps {
   onSubmit: SubmitHandler<FormValues>;
-   onChange: any
   phoneNumber?: string;
   isLoading?: boolean;
   view?: 'login' | undefined;
@@ -25,7 +24,7 @@ export default function PhoneNumberForm({
   onSubmit,
   isLoading,
   view,
-  onChange
+  
 }: PhoneNumberFormProps) {
   const { t } = useTranslation('common');
 
@@ -48,7 +47,6 @@ export default function PhoneNumberForm({
               control={control}
               render={({ field }) => (
                 <PhoneInput
-                onEnterKeyPress={() =>{ return onChange(field)}}
                   country="bd"
                   inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base ltr:!border-r-0 rtl:!border-l-0 !rounded ltr:!rounded-r-none rtl:!rounded-l-none focus:!border-accent !h-12"
                   dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"

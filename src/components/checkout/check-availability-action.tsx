@@ -6,6 +6,7 @@ import { useCart } from '@/store/quick-cart/cart.context';
 import classNames from 'classnames';
 import { useVerifyOrder } from '@/framework/order';
 import omit from 'lodash/omit';
+import { useEffect } from 'react';
 
 export const CheckAvailabilityAction: React.FC<{ className?: string }> = (
   props
@@ -16,6 +17,23 @@ export const CheckAvailabilityAction: React.FC<{ className?: string }> = (
 
   const { mutate: verifyCheckout, isLoading: loading } : any = useVerifyOrder();
 
+  useEffect(() => {
+   if(items.length){
+    verifyCheckout({
+      amount: total,
+      products: items?.map((item) => formatOrderedProduct(item)),
+      billing_address: {
+        ...(billing_address?.address &&
+          omit(billing_address.address, ['__typename'])),
+      },
+      shipping_address: {
+        ...(shipping_address?.address &&
+          omit(shipping_address.address, ['__typename'])),
+      },
+    });
+   }
+ 
+  },[items.length])
   function handleVerifyCheckout() {
     verifyCheckout({
       amount: total,
