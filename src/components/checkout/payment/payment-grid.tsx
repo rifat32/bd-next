@@ -56,18 +56,18 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
           {t('text-choose-payment')}
         </RadioGroup.Label>
 
-        <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3">
+        <div className="mb-8 grid grid-cols-1 gap-0 md:grid-cols-2">
           {Object.values(AVAILABLE_PAYMENT_METHODS_MAP).map(
             ({ name, icon, value }) => (
-              <RadioGroup.Option value={value} key={value}>
+              <RadioGroup.Option value={value} key={value} style={{height:"5rem"}}>
                 {({ checked }) => (
                   <div
                     className={cn(
                       'relative flex h-full w-full cursor-pointer items-center justify-center rounded border border-gray-200 bg-light py-3 text-center',
-                      checked && '!border-accent bg-light shadow-600',
+                      1 && '!border-accent bg-light shadow-600',
                       {
                         '!border-gray-800 bg-light shadow-600':
-                          theme === 'bw' && checked,
+                          theme === 'bw' && 1,
                       }
                     )}
                   >

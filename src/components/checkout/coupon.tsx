@@ -24,17 +24,19 @@ const Coupon = ({ theme }: { theme?: 'dark' }) => {
     formState: { errors },
   } = useForm<FormTypes>();
   const { mutate: verifyCoupon, isLoading: loading, formError } = useVerifyCoupon();
-  if (!hasCoupon && !coupon) {
-    return (
-      <p
-        role="button"
-        className="text-xs font-bold text-body transition duration-200 hover:text-accent"
-        onClick={() => setHasCoupon(true)}
-      >
-        {t('text-have-coupon')}
-      </p>
-    );
-  }
+  
+  // if (!hasCoupon && !coupon) {
+  //   return (
+  //     <p
+  //       role="button"
+  //       className="text-xs font-bold text-body transition duration-200 hover:text-accent"
+  //       onClick={() => setHasCoupon(true)}
+  //     >
+  //       {t('text-have-coupon')}
+  //     </p>
+  //   );
+  // }
+
   function onSubmit(code: FormTypes) {
 
     // verifyCoupon(

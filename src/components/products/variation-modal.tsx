@@ -46,6 +46,7 @@ const Variation = ({ product }: Props) => {
       <div className="mb-8">
         <VariationGroups variations={variations} />
       </div>
+     
       <AddToCart
         data={product}
         variant="big"

@@ -21,10 +21,10 @@ const RightSideView = dynamic(
   () => import('@/components/checkout/right-side-view'),
   { ssr: false }
 );
-const CouponGrid = dynamic(
-  () => import('@/components/checkout/coupon'),
-  { ssr: false }
-);
+// const CouponGrid = dynamic(
+//   () => import('@/components/checkout/coupon'),
+//   { ssr: false }
+// );
 
 export default function CheckoutPage() {
   const { t } = useTranslation();
@@ -74,7 +74,7 @@ export default function CheckoutPage() {
             /> */}
           </div>
           <div className="w-full mt-10 mb-10 sm:mb-12 lg:mb-0 lg:w-96">
-          <CouponGrid/>
+          {/* <CouponGrid/> */}
             <RightSideView />
           </div>
           

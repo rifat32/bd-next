@@ -70,8 +70,8 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
               {maxPrice}
             </span>
           </div>
-        ) : (
-          <div className="mb-2 flex items-center">
+        ) : (<>
+         <div className="mb-2 flex items-center">
             <span className="text-sm font-semibold text-heading md:text-base">
               {price}
             </span>
@@ -81,6 +81,14 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
               </del>
             )}
           </div>
+          <div className="mb-2 flex items-center">
+            <span className="text-sm font-semibold text-heading md:text-base">
+             Available Quantity: {parseInt(product.in_stock)}
+            </span>
+          
+          </div>
+        </>
+         
         )}
         {/* End of product price */}
 
