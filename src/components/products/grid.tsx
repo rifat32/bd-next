@@ -62,6 +62,10 @@ export function Grid({
           },
           gridClassName
         )}
+        style={{
+          gridTemplateColumns:"auto auto auto",
+          gridColumnGap:"1rem"
+        }}
       >
         {isLoading && !products?.length
           ? rangeMap(limit, (i) => (

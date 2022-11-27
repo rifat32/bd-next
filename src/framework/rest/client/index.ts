@@ -82,6 +82,7 @@ class Client {
     all: ({
       type,
       categories,
+      brands,
       name,
       shop_id,
       author,
@@ -97,6 +98,7 @@ class Client {
         ...params,
         search: HttpClient.formatSearchParams({
           type,
+          brands,
           categories,
           name,
           shop_id,

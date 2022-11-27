@@ -29,6 +29,7 @@ export interface SearchParamOptions {
   type: string;
   name: string;
   categories: string;
+  brands:string;
   tags: string;
   author: string;
   price: string;
@@ -78,6 +79,7 @@ export interface ProductQueryOptions extends QueryOptions {
   orderBy: string;
   name: string;
   categories: string;
+  brands: string;
   tags: string;
   type: string;
   manufacturer: string;

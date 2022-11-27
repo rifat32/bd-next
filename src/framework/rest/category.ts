@@ -14,6 +14,7 @@ export function useCategories(options?: Partial<CategoryQueryOptions>) {
   }
 
   const {
+
     data,
     isLoading,
     error,
@@ -21,7 +22,7 @@ export function useCategories(options?: Partial<CategoryQueryOptions>) {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
-  } = useInfiniteQuery<CategoryPaginator, Error>(
+  } = useInfiniteQuery<any, Error>(
     [API_ENDPOINTS.CATEGORIES, formattedOptions],
     ({ queryKey, pageParam }) =>
       client.categories.all(Object.assign({}, queryKey[1], pageParam)),
@@ -36,6 +37,7 @@ export function useCategories(options?: Partial<CategoryQueryOptions>) {
   }
 
   return {
+    brands:data?.pages[0].brands,
     categories: data?.pages?.flatMap((page) => page.data) ?? [],
     paginatorInfo: Array.isArray(data?.pages)
       ? mapPaginatorData(data?.pages[data.pages.length - 1])

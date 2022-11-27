@@ -19,6 +19,7 @@ export default function ProductGridHome({
     useProducts({
       ...variables,
       ...(query.category && { categories: query.category }),
+      ...(query.brand && { brands: query.brand }),
       ...(query.text && { name: query.text }),
     });
   const productsItem:any = products;

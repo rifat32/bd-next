@@ -101,6 +101,7 @@ export const getStaticProps: GetStaticProps<
   }
 
   const categoryVariables = {
+
     type: pageType,
     limit: CATEGORIES_PER_PAGE,
     language: locale,
@@ -113,8 +114,9 @@ export const getStaticProps: GetStaticProps<
     [API_ENDPOINTS.CATEGORIES, categoryVariables],
     ({ queryKey }) => client.categories.all(queryKey[1] as CategoryQueryOptions)
   );
-
+  console.log("categoryies.....",categoryVariables)
   return {
+    
     props: {
       variables: {
         popularProducts: popularProductVariables,

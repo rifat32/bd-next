@@ -5,6 +5,7 @@ import { Element } from 'react-scroll';
 import FilterBar from './filter-bar';
 import ProductGridHome from '@/components/products/grids/home';
 import type { HomePageProps } from '@/types';
+import Brands from '../categories/brands';
 
 export default function ClassicLayout({ variables }: HomePageProps) {
   return (
@@ -17,10 +18,21 @@ export default function ClassicLayout({ variables }: HomePageProps) {
         className="flex border-t border-solid border-border-200 border-opacity-70"
       >
         <Categories layout="classic" variables={variables.categories} />
+        
+        <div className="px-10 pb-8 lg:p-8">
+        <Brands layout="classic" variables={variables.categories}  />
+        <br />
         <ProductGridHome
-          className="px-4 pb-8 lg:p-8"
+          // className="px-4 pb-8 lg:p-8"
           variables={variables.products}
         />
+        </div>
+       {/* <ProductGridHome
+           className="px-4 pb-8 lg:p-8"
+          variables={variables.products}
+        /> */}
+        
+       
       </Element>
     </>
   );
