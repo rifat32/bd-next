@@ -412,6 +412,11 @@ export interface Address {
     street_address: string;
   };
 }
+export interface Shipping {
+  id:number,
+  name:string,
+  value:number
+}
 
 export interface User {
   id: string;
@@ -576,6 +581,7 @@ export interface CreateOrderInput {
   token?: string;
   billing_address: Address;
   shipping_address: Address;
+  shipping_charge: Shipping;
   language?: string;
 }
 

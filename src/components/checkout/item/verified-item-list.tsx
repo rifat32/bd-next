@@ -13,6 +13,7 @@ import {
   couponAtom,
   discountAtom,
   payableAmountAtom,
+  shippingChargeAtom,
   verifiedResponseAtom,
   walletAtom,
 } from '@/store/checkout';
@@ -29,6 +30,8 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
   const { t } = useTranslation('common');
   const { items, isEmpty: isEmptyCart } = useCart();
   const [verifiedResponse] = useAtom(verifiedResponseAtom);
+  const [shippingCharge] = useAtom(shippingChargeAtom);
+  
   const [coupon, setCoupon] = useAtom(couponAtom);
   const [discount] = useAtom(discountAtom);
   const [payableAmount] = useAtom(payableAmountAtom);
@@ -45,9 +48,12 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
   );
 
   const { price: shipping } = usePrice(
-    verifiedResponse && {
-      amount: verifiedResponse.shipping_charge ?? 0,
+    {
+      amount: shippingCharge.value ?? 0,
     }
+    // verifiedResponse && {
+    //   amount: verifiedResponse.shipping_charge ?? 0,
+    // }
   );
 
   const base_amount = calculateTotal(available_items);
@@ -68,7 +74,8 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
         {
           totalAmount: base_amount,
           tax: verifiedResponse?.total_tax,
-          shipping_charge: verifiedResponse?.shipping_charge,
+          // shipping_charge: verifiedResponse?.shipping_charge,
+          shipping_charge: shippingCharge.value,
         },
         Number(discount)
       )

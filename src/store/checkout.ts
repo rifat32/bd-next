@@ -1,4 +1,4 @@
-import { Address, Coupon } from '@/types';
+import { Address, Coupon, Shipping } from '@/types';
 import { CHECKOUT } from '@/lib/constants';
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
@@ -17,6 +17,7 @@ interface VerifiedResponse {
 interface CheckoutState {
   billing_address: Address | null;
   shipping_address: Address | null;
+  shipping_charge: Shipping;
   payment_gateway: PaymentMethodName;
   delivery_time: DeliveryTime | null;
   customer_contact: string;
@@ -29,6 +30,12 @@ interface CheckoutState {
 export const defaultCheckout: CheckoutState = {
   billing_address: null,
   shipping_address: null,
+  shipping_charge:{
+      id:2,
+      name:"Inside Dhaka 80TK",
+      value:80
+    },
+  
   delivery_time: null,
   payment_gateway: 'CASH_ON_DELIVERY',
   customer_contact: '',
@@ -55,11 +62,20 @@ export const shippingAddressAtom = atom(
   (get) => get(checkoutAtom).shipping_address,
   (get, set, data: Address) => {
     const prev = get(checkoutAtom);
-    console.log("data address",data);
-    data.address.title =  data.title
+   
     return set(checkoutAtom, { ...prev, shipping_address: data });
   }
 );
+export const shippingChargeAtom = atom(
+  (get) => get(checkoutAtom).shipping_charge,
+  (get, set, data: Shipping) => {
+    const prev = get(checkoutAtom);
+    console.log(data)
+    return set(checkoutAtom, { ...prev, shipping_charge: data });
+  }
+);
+
+
 export const deliveryTimeAtom = atom(
   (get) => get(checkoutAtom).delivery_time,
   (get, set, data: DeliveryTime) => {

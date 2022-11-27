@@ -29,6 +29,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
 
   const [
     {
+      shipping_charge,
       billing_address,
       shipping_address,
       delivery_time,
@@ -92,6 +93,9 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       },
       shipping_address: {
         ...(shipping_address?.address && shipping_address.address),
+      },
+      shipping_charge: {
+        ...(shipping_charge),
       },
     };
     // if (payment_gateway === 'STRIPE') {

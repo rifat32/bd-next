@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { billingAddressAtom, shippingAddressAtom } from '@/store/checkout';
+import { billingAddressAtom, shippingAddressAtom, shippingChargeAtom } from '@/store/checkout';
 import dynamic from 'next/dynamic';
 import { getLayout } from '@/components/layouts/layout';
 import { AddressType } from '@/framework/utils/constants';
@@ -12,6 +12,11 @@ const ScheduleGrid = dynamic(
 );
 const AddressGrid = dynamic(
   () => import('@/components/checkout/address-grid'),
+  { ssr: false }
+);
+
+const ShippingGrid = dynamic(
+  () => import('@/components/checkout/shipping-grid'),
   { ssr: false }
 );
 const ContactGrid = dynamic(
@@ -30,6 +35,25 @@ export default function CheckoutPage() {
   const { t } = useTranslation();
   const { me } = useUser();
   const { id, address, profile } = me ?? {};
+  const areas = [
+    {
+      id:1,
+      name:"Inside Bashundhara 30TK",
+      value:30
+    },
+    {
+      id:2,
+      name:"Inside Dhaka 80TK",
+      value:80
+    },
+   
+    {
+      id:3,
+      name:"Out Side Dhaka",
+      value:0
+    },
+  ]
+  console.log("address---=",address)
   return (
     <>
       <Seo noindex={true} nofollow={true} />
@@ -55,18 +79,31 @@ export default function CheckoutPage() {
               atom={billingAddressAtom}
               type={AddressType.Billing}
             /> */}
+            {/* {window.alert(JSON.stringify(address))} */}
+
             <AddressGrid
               userId={me?.id!}
               className="p-5 bg-light shadow-700 md:p-8"
               label={t('text-shipping-address')}
-              count={3}
+              count={2}
               //@ts-ignore
-              addresses={address?.filter(
-                (item) => item?.type == AddressType.Shipping
-              )}
+              addresses={address}
               atom={shippingAddressAtom}
               type={AddressType.Shipping}
             />
+
+              <ShippingGrid
+              userId={me?.id!}
+              className="p-5 bg-light shadow-700 md:p-8"
+              label={"Shipping Charges"}
+              count={3}
+              //@ts-ignore
+              shippings={areas}
+              atom={shippingChargeAtom}
+             
+            />
+            
+
             {/* <ScheduleGrid
               className="p-5 bg-light shadow-700 md:p-8"
               label={t('text-delivery-schedule')}
