@@ -30,7 +30,7 @@ export const defaultCheckout: CheckoutState = {
   billing_address: null,
   shipping_address: null,
   delivery_time: null,
-  payment_gateway: 'STRIPE',
+  payment_gateway: 'CASH_ON_DELIVERY',
   customer_contact: '',
   verified_response: null,
   coupon: null,
@@ -55,6 +55,8 @@ export const shippingAddressAtom = atom(
   (get) => get(checkoutAtom).shipping_address,
   (get, set, data: Address) => {
     const prev = get(checkoutAtom);
+    console.log("data address",data);
+    data.address.title =  data.title
     return set(checkoutAtom, { ...prev, shipping_address: data });
   }
 );

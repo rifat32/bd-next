@@ -16,6 +16,7 @@ type FormValues = {
   title: string;
   type: AddressType;
   address: {
+    title: string;
     country: string;
     city: string;
     state: string;
@@ -31,6 +32,7 @@ const addressSchema = yup.object().shape({
     .required('error-type-required'),
   title: yup.string().required('error-title-required'),
   address: yup.object().shape({
+    title: yup.string().required('error-title-required'),
     country: yup.string().required('error-country-required'),
     city: yup.string().required('error-city-required'),
     state: yup.string().required('error-state-required'),
@@ -83,7 +85,7 @@ export const AddressForm: React.FC<any> = ({
           </div>
 
           <Input
-            label={t('text-title')}
+            label="Reciever Name"
             {...register('title')}
             error={t(errors.title?.message!)}
             variant="outline"
@@ -91,35 +93,35 @@ export const AddressForm: React.FC<any> = ({
           />
 
           <Input
-            label={t('text-country')}
+            label="Flat"
             {...register('address.country')}
             error={t(errors.address?.country?.message!)}
             variant="outline"
           />
 
           <Input
-            label={t('text-city')}
+            label="House"
             {...register('address.city')}
             error={t(errors.address?.city?.message!)}
             variant="outline"
           />
 
           <Input
-            label={t('text-state')}
+            label="Road"
             {...register('address.state')}
             error={t(errors.address?.state?.message!)}
             variant="outline"
           />
 
           <Input
-            label={t('text-zip')}
+            label="Area"
             {...register('address.zip')}
             error={t(errors.address?.zip?.message!)}
             variant="outline"
           />
 
           <TextArea
-            label={t('text-street-address')}
+            label="Post Code"
             {...register('address.street_address')}
             error={t(errors.address?.street_address?.message!)}
             variant="outline"

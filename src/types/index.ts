@@ -404,6 +404,7 @@ export interface Address {
   type: any;
   address: {
     __typename?: string;
+    title:string
     country: string;
     city: string;
     state: string;
@@ -654,6 +655,7 @@ export interface Wishlist {
 }
 
 export interface UserAddress {
+  title: string;
   street_address: string;
   country: string;
   city: string;
