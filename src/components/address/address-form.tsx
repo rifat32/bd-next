@@ -16,7 +16,6 @@ type FormValues = {
   title: string;
   type: AddressType;
   address: {
-    title: string;
     country: string;
     city: string;
     state: string;
@@ -32,7 +31,7 @@ const addressSchema = yup.object().shape({
     .required('error-type-required'),
   title: yup.string().required('error-title-required'),
   address: yup.object().shape({
-    title: yup.string().required('error-title-required'),
+   
     country: yup.string().required('error-country-required'),
     city: yup.string().required('error-city-required'),
     state: yup.string().required('error-state-required'),
@@ -159,6 +158,7 @@ export default function CreateOrUpdateAddressForm() {
       title: values.title,
       type: values.type,
       address: {
+        title: values.title,
         ...values.address,
       },
     };

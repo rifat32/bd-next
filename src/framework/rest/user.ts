@@ -68,11 +68,15 @@ export const useDeleteAddress = () => {
 };
 
 export const useUpdateUser = () => {
+
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { closeModal } = useModalAction();
+  console.log("update users","data")
   return useMutation(client.users.update, {
+    
     onSuccess: (data) => {
+      console.log("update users",data)
       if (data?.id) {
         toast.success(t('profile-update-successful'));
         closeModal();
